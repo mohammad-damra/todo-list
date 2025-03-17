@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Todo List</h1>
+            <button id="logoutBtn">Logout</button>
+        </header>
+        
+        <div class="todo-form">
+            <input type="text" id="todoInput" placeholder="Add a new task...">
+            <button onclick="addTodo()">Add</button>
+        </div>
+        
+        <div id="todosList" class="todos-list"></div>
+    </div>
+
+    <script src="js/todo.js"></script>
+    <script>
+        // Load todos when page loads
+        window.onload = function() {
+            if(!localStorage.getItem('token')) {
+                window.location.href = '/login.html';
+            }
+            loadTodos();
+        }
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
