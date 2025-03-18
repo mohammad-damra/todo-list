@@ -25,6 +25,7 @@ function renderTodos(todos) {
             <span>${todo.text}</span>
             <div>
                 <button onclick="toggleTodo('${todo._id}')">✓</button>
+                <button onclick="editTodo('${todo._id}')">✎</button>
                 <button onclick="deleteTodo('${todo._id}')">×</button>
             </div>
         `;
@@ -87,5 +88,28 @@ async function deleteTodo(id) {
     loadTodos();
   } catch (error) {
     console.error("Error deleting todo:", error);
+  }
+}
+
+async function editTodo(id) {
+  const newText = prompt("Enter the new text for the todo:");
+  if (!newText) return;
+
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`/api/todos/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ text: newText }),
+    });
+
+    if (response.ok) {
+      loadTodos();
+    }
+  } catch (error) {
+    console.error("Error editing todo:", error);
   }
 }
