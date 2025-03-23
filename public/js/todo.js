@@ -1,23 +1,4 @@
-async function loadTodos() {
-    try {
-        const token = localStorage.getItem("token");
-        const response = await fetch("/api/todos", {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-
-        if (response.status === 401 || response.status === 403) {
-            window.location.href = "./login.html";
-            return;
-        }
-
-        const todos = await response.json();
-        renderTodos(todos);
-    } catch (error) {
-        console.error("Error loading todos:", error);
-    }
-}
+let currentFilter = 'all';
 
 function renderTodos(todos) {
     const todosList = document.getElementById("todosList");
@@ -26,18 +7,22 @@ function renderTodos(todos) {
     todos.forEach((todo) => {
         const todoElement = document.createElement("div");
         todoElement.className = "todo-item";
+        
+        const todoStyle = todo.completed 
+            ? 'text-decoration: line-through; opacity: 0.7;' 
+            : '';
+
         todoElement.innerHTML = `
-            <span>${todo.text}</span>
+            <span style="${todoStyle}">${todo.text}</span>
             <div>
-                <button onclick="toggleTodo('${todo._id}')">✓</button>
+                <button onclick="toggleTodo('${todo._id}')">
+                    ${todo.completed ? '↻' : '✓'}
+                </button>
                 <button onclick="editTodo('${todo._id}')">✎</button>
                 <button onclick="deleteTodo('${todo._id}')">×</button>
             </div>
         `;
-        if (todo.completed) {
-            todoElement.style.textDecoration = "line-through";
-            todoElement.style.opacity = "0.7";
-        }
+
         todosList.appendChild(todoElement);
     });
 }
@@ -118,3 +103,57 @@ async function editTodo(id) {
         console.error("Error editing todo:", error);
     }
 }
+
+function filterTodos(filterType) {
+    currentFilter = filterType;
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase() === filterType) btn.classList.add('active');
+    });
+    loadTodos();
+}
+
+async function updateProgress() {
+    try {
+        const token = localStorage.getItem("token");
+        const response = await fetch("/api/todos", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        
+        const todos = await response.json();
+        const completed = todos.filter(todo => todo.completed).length;
+        const total = todos.length;
+        const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
+        
+        document.querySelector('.progress-fill').style.width = `${progress}%`;
+    } catch (error) {
+        console.error("Error updating progress:", error);
+    }
+}
+
+async function loadTodos() {
+    try {
+        const token = localStorage.getItem("token");
+        const response = await fetch("/api/todos", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (response.status === 401 || response.status === 403) {
+            window.location.href = "./login.html";
+            return;
+        }
+
+        const todos = await response.json();
+        const filteredTodos = todos.filter(todo => {
+            if (currentFilter === 'completed') return todo.completed;
+            if (currentFilter === 'active') return !todo.completed;
+            return true;
+        });
+        
+        renderTodos(filteredTodos);
+        updateProgress();
+    } catch (error) {
+        console.error("Error loading todos:", error);
+    }
+}
+
