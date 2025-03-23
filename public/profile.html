@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="head-profile">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+        </div>
+        <h1>Edit Profile</h1>
+        <form id="edit-profile" onsubmit="saveChanges(event)">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" disabled>
+            </div>
+            <div class="form-group">
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword">
+            </div>
+            <button type="submit">Save Changes</button>
+            <div id="message"></div>
+        </form>
+    </div>
+    <div class="btn-goHome">
+        <button onclick="goHome()">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            Go Home
+        </button>
+    </div>
+    <script src="./js/profile.js"></script>
+</body>
+</html>
