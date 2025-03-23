@@ -58,6 +58,10 @@ async function saveChanges(event) {
             const data = await response.json();
             if (response.ok) {
                 document.getElementById("message").style.color = "green";
+                const usernameElements = document.querySelectorAll('.username');
+                usernameElements.forEach(el => {
+                    el.textContent = name;
+                })
             } else {
                 document.getElementById("message").style.color = "red";
             }

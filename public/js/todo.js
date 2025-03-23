@@ -126,6 +126,7 @@ async function updateProgress() {
         const progress = total > 0 ? Math.round((completed / total) * 100) : 0;
         
         document.querySelector('.progress-fill').style.width = `${progress}%`;
+        document.querySelector('.progress-text').textContent = `${progress}% Complete`;
     } catch (error) {
         console.error("Error updating progress:", error);
     }
@@ -157,3 +158,16 @@ async function loadTodos() {
     }
 }
 
+async function loadUserProfile() {
+    const token = localStorage.getItem("token");
+    try {
+        const response = await fetch("/api/user", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        
+        const data = await response.json();
+        document.querySelector('.username').textContent = data.findUser.name;
+    } catch (error) {
+        console.error("Error loading user profile:", error);
+    }
+}

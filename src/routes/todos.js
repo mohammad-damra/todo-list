@@ -31,7 +31,7 @@ router.put("/:id", async(req, res) => {
         const todo = await Todo.findById(req.params.id);
         if (!todo) return res.status(404).json({ message: "Todo not found" });
 
-        todo.text = text; // Update the todo's text
+        todo.text = text; 
         await todo.save();
         res.json(todo);
     } catch (err) {

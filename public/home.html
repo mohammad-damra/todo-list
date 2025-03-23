@@ -16,11 +16,19 @@
         </header>
 
         <div class="User-profile">
-            <a href="./profile.html"> <i class="fa fa-user-circle-o" aria-hidden="true"></i> </a>
+            <div class="profile-info">
+                <span class="username"></span>
+                <a href="./profile.html">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
 
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="progress-text">0% Complete</div>
         </div>
         
         <div class="filter-tabs">
@@ -44,6 +52,7 @@
             if(!localStorage.getItem('token')) {
                 window.location.href = '/login.html';
             }
+            loadUserProfile();
             loadTodos();
         }
     </script>
