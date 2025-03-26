@@ -1,60 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Todo List</title>
-    <link rel="stylesheet" href="./css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>Todo List</h1>
-            <div class="header-controls">
-                <button id="logoutBtn" class="btn-icon"><i class="fa fa-sign-out"></i></button>
-            </div>
-        </header>
+      <header>
+        <h1>Todo List</h1>
+        <div class="header-controls">
+          <button id="logoutBtn" class="btn-icon">
+            <i class="fa fa-sign-out"></i>
+          </button>
+        </div>
+      </header>
 
-        <div class="User-profile">
-            <div class="profile-info">
-                <span class="username"></span>
-                <a href="./profile.html">
-                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                </a>
-            </div>
+      <div class="User-profile">
+        <div class="profile-info">
+          <span class="username"></span>
+          <a href="./profile.html">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+          </a>
         </div>
+      </div>
 
-        <div class="progress-container">
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-            <div class="progress-text">0% Complete</div>
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
         </div>
-        
-        <div class="filter-tabs">
-            <button class="filter-btn active" onclick="filterTodos('all')">All</button>
-            <button class="filter-btn" onclick="filterTodos('completed')">Completed</button>
-            <button class="filter-btn" onclick="filterTodos('active')">Active</button>
-        </div>
-        
-        <div class="todo-form">
-            <input type="text" id="todoInput" placeholder="Add a new task...">
-            <button onclick="addTodo()">Add</button>
-        </div>
-        
-        <div id="todosList" class="todos-list"></div>
+        <div class="progress-text">0% Complete</div>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-btn active" onclick="filterTodos('all')">
+          All
+        </button>
+        <button class="filter-btn" onclick="filterTodos('completed')">
+          Completed
+        </button>
+        <button class="filter-btn" onclick="filterTodos('active')">
+          Active
+        </button>
+      </div>
+
+      <div class="todo-form">
+        <input type="text" id="todoInput" placeholder="Add a new task..." />
+        <button onclick="addTodo()">Add</button>
+      </div>
+
+      <div id="todosList" class="todos-list"></div>
+      <!-- Pagination container will be inserted here by JavaScript -->
     </div>
 
     <script src="./js/auth.js"></script>
     <script src="./js/todo.js"></script>
     <script>
-        window.onload = function() {
-            if(!localStorage.getItem('token')) {
-                window.location.href = '/login.html';
-            }
-            loadUserProfile();
-            loadTodos();
+      window.onload = function () {
+        if (!localStorage.getItem("token")) {
+          window.location.href = "/login.html";
         }
+        loadUserProfile();
+        loadTodos();
+      };
     </script>
-</body>
+  </body>
 </html>

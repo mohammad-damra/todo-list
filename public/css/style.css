@@ -1,319 +1,402 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
 body {
-    background-color: #f0f2f5;
+  background-color: #f0f2f5;
 }
 
 .container {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    width: 100%;
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-    margin-left: 25px;
+  width: 100%;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  margin-left: 25px;
 }
 
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
 }
 
 input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .error {
-    color: red;
-    margin-top: 10px;
-    text-align: center;
+  color: red;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .todo-form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .todo-form input {
-    flex: 1;
-    min-width: 300px;
+  flex: 1;
+  min-width: 300px;
 }
 
 .todos-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .todo-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background: #f8f9fa;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #ddd;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .User-profile i {
-    color: #007bff;
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    cursor: pointer;
-    font-size: 60px;
-    transition: opacity 0.2s;
+  color: #007bff;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  font-size: 60px;
+  transition: opacity 0.2s;
 }
 
 .head-profile {
-    text-align: center;
+  text-align: center;
 }
 
 .head-profile i {
-    color: #007bff;
-    font-size: 100px;
-    margin: auto;
-    margin-bottom: 20px;
+  color: #007bff;
+  font-size: 100px;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
 #edit-profile button {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 #message {
-    color: red;
-    font-size: 14px;
-    text-align: center;
-    margin-top: 5px;
+  color: red;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5px;
 }
 
 .btn-goHome {
-    width: 100%;
-    text-align: center;
-    margin-top: -35px;
+  width: 100%;
+  text-align: center;
+  margin-top: -35px;
 }
 
 .btn-goHome button {
-    width: 130px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+  width: 130px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
 }
 .btn-goHome button i {
-    margin-right: 5px;
-    margin-left: 10px;
+  margin-right: 5px;
+  margin-left: 10px;
 }
 .btn-goHome button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 .header-controls {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .btn-icon {
-    background: none;
-    border: none;
-    padding: 8px;
-    font-size: 20px;
-    color: #007bff;
+  background: none;
+  border: none;
+  padding: 8px;
+  font-size: 20px;
+  color: #007bff;
 }
 
 .btn-icon:hover {
-    color: #0056b3;
+  color: #0056b3;
 }
 
 .filter-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .filter-btn {
-    flex: 1;
-    padding: 8px;
-    background: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: pointer;
+  flex: 1;
+  padding: 8px;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .filter-btn.active {
-    background: #007bff;
-    color: white;
-    border-color: #007bff;
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
 }
 
-
 .todo-item button {
-    padding: 5px 10px;
-    margin-left: 5px;
-    background: #007bff;
-    border: none;
-    border-radius: 3px;
-    color: white;
+  padding: 5px 10px;
+  margin-left: 5px;
+  background: #007bff;
+  border: none;
+  border-radius: 3px;
+  color: white;
 }
 
 .todo-item button:hover {
-    background: #0056b3;
+  background: #0056b3;
 }
 
 .filter-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .filter-btn {
-    flex: 1;
-    padding: 8px 12px;
-    background: #ffffff;
-    border: 2px solid #e0e0e0;
-    border-radius: 25px;
-    cursor: pointer;
-    color: #666;
-    font-weight: 500;
-    transition: all 0.3s ease;
+  flex: 1;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  cursor: pointer;
+  color: #666;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .filter-btn:hover {
-    border-color: #007bff;
-    color: #007bff;
-    transform: translateY(-2px);
+  border-color: #007bff;
+  color: #007bff;
+  transform: translateY(-2px);
 }
 
 .filter-btn.active {
-    background: #007bff;
-    border-color: #007bff;
-    color: white;
-    box-shadow: 0 4px 6px rgba(0,123,255,0.2);
+  background: #007bff;
+  border-color: #007bff;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
 }
 
 @media (prefers-color-scheme: dark) {
-    .filter-btn {
-        background: #2d2d2d;
-        border-color: #444;
-        color: #ccc;
-    }
+  .filter-btn {
+    background: #2d2d2d;
+    border-color: #444;
+    color: #ccc;
+  }
 }
 
-
 .progress-percent {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .profile-info:hover .username {
-    opacity: 1;
+  opacity: 1;
 }
 
 .User-profile:hover i {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .User-profile {
-    position: relative;
-    margin-bottom: 40px;
+  position: relative;
+  margin-bottom: 40px;
 }
 
 .profile-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
 }
 
 .username {
-    color: #007bff;
-    font-weight: bold;
-    font-size: 22px;
-    white-space: nowrap;
-    max-width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-top: 35px;
-    margin-bottom: -15px;
+  color: #007bff;
+  font-weight: bold;
+  font-size: 22px;
+  white-space: nowrap;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 35px;
+  margin-bottom: -15px;
 }
 
 .progress-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
 }
 
 .progress-bar {
-    flex: 1;
-    height: 8px;
-    background: #f0f0f0;
-    border-radius: 4px;
+  flex: 1;
+  height: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
 }
 
 .progress-fill {
-    height: 100%;
-    background: #007bff;
-    border-radius: 4px;
-    transition: width 0.3s ease;
-    will-change: width;
+  height: 100%;
+  background: #007bff;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  will-change: width;
 }
 
 .progress-text {
-    color: #666;
-    font-size: 14px;
-    min-width: 60px;
+  color: #666;
+  font-size: 14px;
+  min-width: 60px;
+}
+
+/* Pagination container */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 25px;
+  padding: 15px 0;
+}
+
+/* Pagination buttons */
+.pagination button {
+  padding: 8px 12px;
+  min-width: 36px;
+  background: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  color: #666;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+/* Active page button */
+.pagination button.active {
+  background: #007bff;
+  border-color: #007bff;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+}
+
+/* Hover state for buttons */
+.pagination button:not(.active):not(:disabled):hover {
+  border-color: #007bff;
+  color: #007bff;
+  transform: translateY(-2px);
+}
+
+/* Disabled navigation buttons */
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Navigation arrows (previous/next) */
+.pagination button:first-child,
+.pagination button:last-child {
+  padding: 8px 15px;
+}
+
+/* No todos message */
+.no-todos {
+  text-align: center;
+  padding: 30px 0;
+  color: #666;
+  font-size: 16px;
+  border: 2px dashed #e0e0e0;
+  border-radius: 8px;
+  margin-top: 20px;
+  background: #f9f9f9;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .pagination button {
+    background: #2d2d2d;
+    border-color: #444;
+    color: #ccc;
+  }
+
+  .pagination button.active {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+  }
+
+  .no-todos {
+    background: #2d2d2d;
+    border-color: #444;
+    color: #aaa;
+  }
 }
