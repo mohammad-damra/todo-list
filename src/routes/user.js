@@ -31,9 +31,9 @@ router.put("/", async (req, res) => {
         if (newPassword && newPassword !== "") {
             await findUser.updateOne({ password: await bcrypt.hash(newPassword, 10) });
         }
-        return res.json({ message: "updated successfully" });
+        return res.json(findUser);
     } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(500).json({ message: "Server error" });
     }
 });
 

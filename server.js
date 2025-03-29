@@ -7,6 +7,7 @@ const todoRoutes = require("./src/routes/todos");
 const userRoutes = require("./src/routes/user");
 const authMiddleware = require("./src/middleware/auth");
 const path = require("path");
+const db = require("./src/config/db"); 
 
 const app = express();
 
@@ -16,10 +17,11 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Database connection
-mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => console.log("Connected to MongoDB"))
-    .catch((err) => console.error(err));
+// mongoose
+//     .connect(process.env.MONGO_URI)
+//     .then(() => console.log("Connected to MongoDB"))
+//     .catch((err) => console.error(err));
+db.connectDB();
 
 // Routes
 app.use("/api/auth", authRoutes);

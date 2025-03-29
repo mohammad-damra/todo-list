@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Todo = require("../models/Todo");
+const { default: mongoose } = require("mongoose");
 
 // Get all todos
 router.get("/", async(req, res) => {
@@ -16,6 +17,9 @@ router.get("/", async(req, res) => {
 router.post("/", async(req, res) => {
     try {
         const { text } = req.body;
+        if (!text) {
+            return res.status(400).json({message:"text must not empty"});
+        }
         const todo = new Todo({ text, user: req.userId });
         await todo.save();
         res.json(todo);
@@ -28,9 +32,13 @@ router.post("/", async(req, res) => {
 router.put("/:id", async(req, res) => {
     try {
         const { text } = req.body;
+        if (!text) {
+            return res.status(400).json({message:"text must not empty"});
+        }
         const todo = await Todo.findById(req.params.id);
-        if (!todo) return res.status(404).json({ message: "Todo not found" });
-
+        if (!todo) {
+            return res.status(404).json({ message: "Todo not found" });
+        }
         todo.text = text; 
         await todo.save();
         res.json(todo);
@@ -56,7 +64,15 @@ router.put("/:id/toggle", async(req, res) => {
 // Delete todo
 router.delete("/:id", async(req, res) => {
     try {
-        await Todo.findByIdAndDelete(req.params.id);
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({message:"Invalid ID format"});
+        }
+
+        let deleteTodo = await Todo.findByIdAndDelete(req.params.id);
+        
+        if (!deleteTodo) {
+            return res.status(404).json({message:"todo not found"});
+        }
         res.json({ message: "Todo removed" });
     } catch (err) {
         res.status(500).json({ message: "Server error" });
