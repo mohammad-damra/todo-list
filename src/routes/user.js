@@ -25,9 +25,7 @@ router.put("/", async (req, res) => {
         if (!findUser) {
             return res.status(400).json({ message: "Invailed credentials" });
         }
-        if (name) {
-            await findUser.updateOne({ name: name });
-        }
+
         if (newPassword && newPassword !== "") {
             if (newPassword.length < 8) {
                 return res.status(400).json({ message: "password must be at least 8 characters long" });
@@ -50,6 +48,11 @@ router.put("/", async (req, res) => {
             }
             await findUser.updateOne({ password: await bcrypt.hash(newPassword, 10) });
         }
+
+        if (name) {
+            await findUser.updateOne({ name: name });
+        }
+        
         return res.json({message:"updated successfully"});
     } catch (err) {
         return res.status(500).json({ message: "Server error" });
