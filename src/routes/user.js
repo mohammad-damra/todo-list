@@ -29,9 +29,28 @@ router.put("/", async (req, res) => {
             await findUser.updateOne({ name: name });
         }
         if (newPassword && newPassword !== "") {
+            if (newPassword.length < 8) {
+                return res.status(400).json({ message: "password must be at least 8 characters long" });
+            }
+    
+            if (!/[a-z]/.test(newPassword)) {
+                return res.status(400).json({ message: "Password must contain at least one lowercase letter" });
+            }
+    
+            if (!/[A-Z]/.test(newPassword)) {
+                return res.status(400).json({ message: "Password must contain at least one uppercase letter" });
+            }
+    
+            if (!/\d/.test(newPassword)) {
+                return res.status(400).json({ message: "Password must contain at least one number" });
+            }
+    
+            if (!/[!@#$%^&*]/.test(newPassword)) {
+                return res.status(400).json({ message: "Password must contain at least one special symbol (!@#$%^&*)" });
+            }
             await findUser.updateOne({ password: await bcrypt.hash(newPassword, 10) });
         }
-        return res.json(findUser);
+        return res.json({message:"updated successfully"});
     } catch (err) {
         return res.status(500).json({ message: "Server error" });
     }
