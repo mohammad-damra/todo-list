@@ -93,6 +93,7 @@ function createPaginationContainer() {
   document.getElementById("todosList").after(container);
   return container;
 }
+
 async function addTodo() {
   const text = document.getElementById("todoInput").value;
   if (!text) return;
@@ -172,6 +173,14 @@ async function editTodo(id) {
 }
 
 function filterTodos(filterType) {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  const activeButton = document.querySelector(`.filter-btn[onclick*="${filterType}"]`);
+  if (activeButton) {
+    activeButton.classList.add('active');
+  }
   currentFilter = filterType;
   currentPage = 1; // Reset to first page when changing filter
   loadTodos();

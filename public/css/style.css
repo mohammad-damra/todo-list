@@ -186,12 +186,18 @@ header {
   border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .filter-btn.active {
   background: #007bff;
   color: white;
-  border-color: #007bff;
+  transform: scale(0.98);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.filter-btn:not(.active):hover {
+  background: #e9ecef;
 }
 
 .todo-item button {
