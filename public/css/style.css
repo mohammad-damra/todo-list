@@ -196,10 +196,6 @@ header {
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.filter-btn:not(.active):hover {
-  background: #e9ecef;
-}
-
 .todo-item button {
   padding: 5px 10px;
   margin-left: 5px;
