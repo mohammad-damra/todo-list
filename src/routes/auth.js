@@ -4,6 +4,31 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
+function isValidName(name) {
+    if (typeof name !== "string")
+        return false;
+    if (/^\w{3,}/.test(name) && /^[a-zA-Z]/.test(name))
+        return true;
+    return false;
+}
+
+function isValidEmail(email) {
+    if (typeof email !== "string")
+        return false;
+    if (/^[a-zA-Z](\w|\.){2,}@\w{2,}\.\w{2,}$/.test(email))
+        return true;
+    return false;
+}
+
+function isValidPassword(password) {
+    if (typeof password !== "string")
+        return false;
+    if (/.{8,}/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password)
+        && /\d/.test(password) && /[!@#$%^&*]/.test(password))
+        return true;
+    return false;
+}
+
 router.post('/signup', async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -12,28 +37,17 @@ router.post('/signup', async (req, res) => {
             return res.status(400).json({ message: "Invailed credentials" });
         }
 
+        if (!isValidName(name))
+            return res.status(400).json({ message: "Invalid name" });
+
+        if (!isValidEmail(email))
+            return res.status(400).json({ message: "Invalid email" });
+        
+        if (!isValidPassword(password))
+            return res.status(400).json({ message: "Password must include at least one lowercase letter, one uppercase letter, a number, a symbol (!@#$%^&*), and be at least 8 characters long" });
+
         let user = await User.findOne({ email });
         if (user) return res.status(400).json({ message: 'User already exists' });
-
-        if (password.length < 8) {
-            return res.status(400).json({ message: "password must be at least 8 characters long" });
-        }
-
-        if (!/[a-z]/.test(password)) {
-            return res.status(400).json({ message: "Password must contain at least one lowercase letter" });
-        }
-
-        if (!/[A-Z]/.test(password)) {
-            return res.status(400).json({ message: "Password must contain at least one uppercase letter" });
-        }
-
-        if (!/\d/.test(password)) {
-            return res.status(400).json({ message: "Password must contain at least one number" });
-        }
-
-        if (!/[!@#$%^&*]/.test(password)) {
-            return res.status(400).json({ message: "Password must contain at least one special symbol (!@#$%^&*)" });
-        }
 
         user = new User({ name, email, password });
         await user.save();

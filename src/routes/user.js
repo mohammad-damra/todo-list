@@ -3,6 +3,23 @@ const router = express.Router();
 const user = require("../models/User");
 const bcrypt = require("bcryptjs");
 
+function isValidName(name) {
+    if (typeof name !== "string")
+        return false;
+    if (/^\w{3,}/.test(name) && /^[a-zA-Z]/.test(name))
+        return true;
+    return false;
+}
+
+function isValidPassword(password) {
+    if (typeof password !== "string")
+        return false;
+    if (/.{8,}/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password)
+        && /\d/.test(password) && /[!@#$%^&*]/.test(password))
+        return true;
+    return false;
+}
+
 router.get("/", async (req, res) => {
     try {
         const findUser = await user.findById(req.userId);
@@ -18,42 +35,25 @@ router.get("/", async (req, res) => {
 router.put("/", async (req, res) => {
     try {
         const { name, newPassword } = req.body;
-        if (!isNaN(name)) {
-            return res.status(400).json({ message: "name must be string not a number" })
-        }
+
         const findUser = await user.findById(req.userId);
         if (!findUser) {
             return res.status(400).json({ message: "Invailed credentials" });
         }
 
         if (newPassword && newPassword !== "") {
-            if (newPassword.length < 8) {
-                return res.status(400).json({ message: "password must be at least 8 characters long" });
-            }
-    
-            if (!/[a-z]/.test(newPassword)) {
-                return res.status(400).json({ message: "Password must contain at least one lowercase letter" });
-            }
-    
-            if (!/[A-Z]/.test(newPassword)) {
-                return res.status(400).json({ message: "Password must contain at least one uppercase letter" });
-            }
-    
-            if (!/\d/.test(newPassword)) {
-                return res.status(400).json({ message: "Password must contain at least one number" });
-            }
-    
-            if (!/[!@#$%^&*]/.test(newPassword)) {
-                return res.status(400).json({ message: "Password must contain at least one special symbol (!@#$%^&*)" });
-            }
+            if (!isValidPassword(newPassword))
+                return res.status(400).json({ message: "Password must include at least one lowercase letter, one uppercase letter, a number, a symbol (!@#$%^&*), and be at least 8 characters long" });
             await findUser.updateOne({ password: await bcrypt.hash(newPassword, 10) });
         }
 
         if (name) {
+            if (!isValidName(name))
+                return res.status(400).json({ message: "Invalid name" });
             await findUser.updateOne({ name: name });
         }
-        
-        return res.json({message:"updated successfully"});
+
+        return res.json({ message: "updated successfully" });
     } catch (err) {
         return res.status(500).json({ message: "Server error" });
     }
