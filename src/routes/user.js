@@ -14,8 +14,9 @@ function isValidName(name) {
 function isValidPassword(password) {
     if (typeof password !== "string")
         return false;
-    if (/.{8,}/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password)
-        && /\d/.test(password) && /[!@#$%^&*]/.test(password))
+    // if (/.{8,}/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password)
+    //     && /\d/.test(password) && /[!@#$%^&*]/.test(password))
+    if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])[A-Za-z\d@#$%^&+=!]{8,}$/.test(password))
         return true;
     return false;
 }
